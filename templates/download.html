@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block div_content %}
+	<div class="alert alert-primary" role="alert">
+  		<h6 class="alert-heading">{{ title }}</h6>
+	</div>
+
+	<form action="/" method="POST">
+		<input class="download" type="submit" name="download" value="Download">
+		<select class="res" name="res">
+			<option value="{{ res[0] }}" selected>{{ res[0] }}</option>
+			{% for i in range(1, res|length) %}
+				<option value="{{ res[i] }}">{{ res[i] }}</option>
+			{% endfor %}
+		</select>
+	</form>
+{% endblock %}

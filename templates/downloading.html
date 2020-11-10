@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+
+{% block div_content %}
+
+	<div class="alert alert-primary" role="alert" id="msg">
+	  <h6 class="alert-heading" id="success-msg">{{ title }}</h6>
+	  File size: {{ filesize }} MB
+	</div>
+
+	<button class="btn btn-primary" type="button" disabled id="is_downloading">
+	  	<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+	  	Downloading...
+	</button>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+	<script>
+		$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+		var ID = 0;
+		var status;
+
+		var download_status = function() {
+	  		$.getJSON($SCRIPT_ROOT + '/download_status', function(data) {
+	        	status = data.status;
+	      	});
+			if(status == "false") {
+	      		window.clearInterval(ID);
+	      		document.getElementById("is_downloading").remove();
+	      		document.getElementById("msg").setAttribute("class", "alert alert-success");
+	      		document.getElementById("success-msg").innerHTML = "{{ title }}<br>successfully downloaded!";
+	      	}
+	    }
+
+		ID = window.setInterval(download_status, 1000);
+	</script>
+{% endblock %}

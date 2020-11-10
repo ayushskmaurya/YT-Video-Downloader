@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YT Video Downloader</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="logo">
+        <img class="logo" src="{{ url_for('static', filename='logo.jpg') }}">
+    </div>
+	<pre class="title">YT   Video  Downloader</pre>
+
+	<div class="search">
+		<form action="/" method="POST">
+			<input class="link" type="text" name="link" placeholder="Link">
+			<input class="search" type="submit" name="search" value="Search">
+		</form>
+		{% block div_content %} {% endblock %}
+	</div>
+
+    <div class="footer">
+    	Developed By:<br>Ayushkumar Maurya
+	</div>
+</body>
+</html>
